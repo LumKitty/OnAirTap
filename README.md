@@ -16,8 +16,11 @@ The only other game I've tested is Open Brush. If I remember rightly, that was i
 
 The support for SDK 2 was developed against version `1.43.100_18399` of Beat Saber's URP beta. It might work with other games, but I have nothing to test that against.
 
-There is currently no support for IL2CPP games, although I am looking into it.
-## Setup
+Support for MelonLoader was developed using version `0.7.3`.
+
+IL2CPP games can work, but only with MelonLoader, and only when the LIV support is added through a mod. There is currently no support for IL2CPP games with native LIV support, although I am looking into it.
+
+## Basic Setup
 
 Go to Releases and download a build that's appropriate for your chosen mod loader, which you should already have set up.
 
@@ -27,141 +30,9 @@ Extract that onto your game folder. As long as the loader is the same, builds ma
 
 You will then need to run the game once, to create a config file.
 
-The mod will read information from LIVnyan's MemoryMappedFile and should activate when you press the LIVnyan button inside VNyan.
+The mod will read information from VRnyan's MemoryMappedFile and should activate when you press the VRnyan button inside VNyan.
 
-### Setup notes for Linux
-If the game has a native Linux version, don't use it. Switch to the Windows version of the game. In Steam, you can do that from Properties > Compatibility, by ticking the box and choosing a Proton version.
-
-To use the Spout feeds, you will need Spout2PW and obs-pwvideo by Hoshino Lina. Those are no longer actively developed, but they still work fine.
-You may want to set the `SPOUT2PW_INSTANCE` variable to something, so the video feed name doesn't change for each game.
-
-MemoryMappedFiles are a Windows feature. Wine has support, but that is contained to inside a wine instance. Communication across instances, to relay information between VNyan and the game, requires some additional code. OnAirTap has logic to use native Linux shared memory, but pulling the data out of LIVnyan's MMF requires a helper program. That's `mmf_vnyan`, which you can run by setting the `PROTON_REMOTE_DEBUG_CMD` environment variable when you run VNyan.
-
-The helper exe currently has no accessible stop mechanism, so you will have to end it yourself.
-
-## Config
-
-I've tried to give the config options self-explanatory names.
-There are some that could use a bit of background information.
-
-### Section - Render Passes
-
- - Render[XYZ] - Whether to render a given pass. 
- - Send[XYZ] - Whether to update a pass' Spout sender each frame. Useful if you need to render a pass, but aren't using it in compositing.
-
- - BlankSpoutOnRenderDispose - The object that controls rendering is often destroyed on a scene change. When that happens, the spout feeds are frozen until the next scene creates a new one. This option blanks the feeds after destruction, so there's no objects seemingly stuck in place 
- - LayerMaskString - This option allows you to overwrite the layer mask of the spectator camera. String must be either empty or 32 characters long. The only permitted characters are 0 and 1.
-
-### Section - Clip Planes
-
- - GroundClipPlaneElevation - How far off the playspace ground is the ground plane? The default value is 1cm, to prevent Z-fighting at 0cm.
- - ClipPlaneShouldBeVertical - An actual mesh plane is used to divide the foreground from the background. I couldn't decide what the rotation behaviour should be, so this chooses between the two easiest options.
-<img width="4000" height="2320" alt="clip" src="https://github.com/user-attachments/assets/11ae052a-a797-4e28-82ad-c8d639612452" />
-
- - CameraFarClip - This sets the far clip distance of the camera. Default value in BepInEx builds is 1000. That is raised to 5000 for BSIPA builds.
-
-### Section - Extra Data
-
- - ShouldReadResolutionFromMMF - Set the render resolution to values read from the MMF.
-
- - ShouldReadTrackerFromMMF - Set the location of the clip plane based on a vector read from the MMF.
-    - Rotation is still controlled by relevant settings in the config.
-    - If the relevant setting is not also transmitted by LIVnyan, This is ignored.
-
- - MMFProtocolMinorVersion - Sets the name of the MMF and determines how/what data is read.
-    - Value 0 is compatible with LIVnyan v1.2
-    - Value 1 is compatible with LIVnyan v1.3a2 (but not v1.3a1)
-
- Both of the "ShouldRead"s can be enabled on ProtocolMinorVersion 0, but the read is not attempted.
-  - Resolution defaults back to the configured value.
-  - The tracker is stuck at the playspace root.
-
-
-
-## Compositing
-
-There's three different ways to do compositing, based on if you're using just the Optimised texture, the Foreground and Background textures, or all three.
-
-### Foreground/Background
----
-This is the setup you'll probably be using. An extra camera is used to render the scene two additional times. The foreground texture can then be used as a premultiplied image, so that emissive (glowing) objects and fog will correctly appear in front of the model.
-
-There are some extra steps needed for limit the influence of the foreground, so that areas of the background not covered by your model don't experience doubled glow. That can be done either with an [Advanced Mask](https://github.com/FiniteSingularity/obs-advanced-masks) filter or some adjustments to blend modes.
-
-**Uses Plugin, Uses Groups**<br>
-To composite this config:
-
-<img width="368" height="115" alt="CompFGBG1" src="https://github.com/user-attachments/assets/caa1432c-e178-47af-9473-2a4705eb9935" />
-
-
-**Uses Plugin, No Groups**<br>
-To composite this config:
-
-<img width="464" height="107" alt="CompFGBG2" src="https://github.com/user-attachments/assets/3d961077-ae27-4eed-8bb6-02e0302d1c4a" />
-
-
-**No Plugin, No Groups**<br>
-To composite this config:
-
-<img width="368" height="115" alt="CompFGBG3" src="https://github.com/user-attachments/assets/3c26ba82-ac45-4daa-bfd0-d6272677a544" />
-
-
-
-### Just Optimised
----
-If there are no emissive objects between you and the camera, this is the way to go. The Optimised texture has the RGB channels of a background texture, but with the Alpha channel of a foreground texture. It only adds one render, and is therefore quite efficient.
-
-The OBS layout for compositing Optimised configs is very simple.
-
-<img width="338" height="92" alt="CompOP1" src="https://github.com/user-attachments/assets/6d2dfc00-52f8-4f96-b352-d83b6601d2d7" />
-
-
-That's it. You don't even need any filters.
-
-### All three
----
-This config is not very efficient. You're rendering the active scene three extra times. Avoid, if you can.
-
-In Beat Saber, the alpha channel is overwritten during post-processing. For reasons unknown, Beat Saber is missing the code needed to save and re-apply the original alpha channel at the end of the frame, so our Foreground render does not not produce a usable premultiplied texture. Luckily, the Optimised texture still works as intended, and can be used to fix the problem.
-
-To composite this config:
-
-<img width="464" height="107" alt="CompALL1" src="https://github.com/user-attachments/assets/dde189ac-200d-4e1d-a1e3-4c7cfab73fac" />
-
-
-You only need a single filter here. The Foreground source must be masked to the Alpha channel of the VNyan source, so that foreground objects don't have double-strength glow.
-
-My settings for that mask are this:
-
-<img width="578" height="338" alt="AdvMask" src="https://github.com/user-attachments/assets/26545fbd-cd22-48fb-88dc-ac1c726df613" />
-
-
-### Notes on premultiplication
----
-If you don't know what premultiplication is, watch [this video](https://www.youtube.com/watch?v=XobSAXZaKJ8).
-It's about compositing in general, but does explain premultiplication, as part of that.
-
-OBS seems to prefer straight alpha. OBS' plugin API gives direct enough control for a plugin source to set blending correctly for premultiplication, but adding almost any effect filter will set it back to straight alpha. That means that things like glow and fog will disappear.
-
-I've seen this with an empty shaderfilter, the render delay filter, and colour correction.
-
-If you _**need**_ to apply a filter to a premultiplied source, either find a way to apply it to a group further up, or separate the source into two with different blend modes.
-
-### Compositing notes for Linux
----
-Pipewire Video sources can only be premultiplied. It is assumed that the feed always is, and there's no built-in way to change that, so some workarounds are needed.
-
-#### For Default/Straight:
-
-As stated above, most filters will reset the source back to straight alpha. I personally use a shaderfilter with the default shader, but you can use an unmodified Colour Correction.
-
-#### For Opaque/Ignore:
-
-To ignore the alpha channel, we can't use a filter, because those will first re-do the multiplication and blank out areas of the image. Instead, I put the source in a group with a black colour source of the same size. Filters, like Advanced Mask, can then be applied to the group.
-
-Groups cannot be nested, though. If you need to put your source inside a group, you might need to use a separate scene. In that scene, put the pipewire source and a colour. You can then bring the scene into your original scene as a source, at which point it can be inside a group.
-
-
+**For further instructions, consult the [wiki](/milkydelta/OnAirTap/wiki).**
 
 ## Building
 
