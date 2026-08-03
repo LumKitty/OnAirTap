@@ -17,7 +17,7 @@
 
     <Target Name="ZipOutputFolder" AfterTargets="GetGit" Condition="$(Configuration) == Release">
         <PropertyGroup>
-            <ZipOutputFilename>$(OutputPath)/Out/OnAirTap-$(Version)-Melon-$(GameName)-$(GitHash).zip</ZipOutputFilename>
+            <ZipOutputFilename>$(OutputPath)/Out/OnAirTap-$(Version)-MelonM-$(GameName)-$(GitHash).zip</ZipOutputFilename>
         </PropertyGroup>
         <Delete Files="$(ZipOutputFilename)" Condition="Exists($(ZipOutputFilename))" />
         <ZipDirectory SourceDirectory="$(OutputTargetFolder)" DestinationFile="$(ZipOutputFilename)" />

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <AssemblyName>OnAirTap.Melon</AssemblyName>
+    <AssemblyName>OnAirTap.MelonM</AssemblyName>
     <RootNamespace>OnAirTap.Melon</RootNamespace>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
