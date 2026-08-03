@@ -32,7 +32,7 @@ You will then need to run the game once, to create a config file.
 
 The mod will read information from VRnyan's MemoryMappedFile and should activate when you press the VRnyan button inside VNyan.
 
-**For further instructions, consult the [wiki](/milkydelta/OnAirTap/wiki).**
+**For further instructions, consult the [wiki](https://github.com/milkydelta/OnAirTap/wiki).**
 
 ## Building
 
