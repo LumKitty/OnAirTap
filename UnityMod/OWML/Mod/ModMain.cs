@@ -53,9 +53,9 @@ public class ModMain : ModBehaviour
 		conf.RenderFG = cfg.GetSettingsValue<bool>("renderFG");
 		conf.RenderOP = cfg.GetSettingsValue<bool>("renderOP");
 
-		conf.SpoutSendBG = cfg.GetSettingsValue<bool>("sendBG");
-		conf.SpoutSendFG = cfg.GetSettingsValue<bool>("sendFG");
-		conf.SpoutSendOP = cfg.GetSettingsValue<bool>("sendOP");
+		//conf.SpoutSendBG = cfg.GetSettingsValue<bool>("sendBG");
+		//conf.SpoutSendFG = cfg.GetSettingsValue<bool>("sendFG");
+		//conf.SpoutSendOP = cfg.GetSettingsValue<bool>("sendOP");
 
 		conf.BlankSpoutSenders = cfg.GetSettingsValue<bool>("blankSenders");
 

@@ -50,9 +50,9 @@ internal class BSIPA_OatComponent : MonoBehaviour
         Plugin.cfg.ReadResFromShm = PluginConfig.Instance.ShouldReadResolutionFromMMF;
         Plugin.cfg.ReadClipFromShm = PluginConfig.Instance.ShouldReadTrackerFromMMF;
 
-        Plugin.cfg.SpoutSendBG = PluginConfig.Instance.ShouldSendBG;
-        Plugin.cfg.SpoutSendFG = PluginConfig.Instance.ShouldSendFG;
-        Plugin.cfg.SpoutSendOP = PluginConfig.Instance.ShouldSendOptimised;
+        //Plugin.cfg.SpoutSendBG = PluginConfig.Instance.ShouldSendBG;
+        //Plugin.cfg.SpoutSendFG = PluginConfig.Instance.ShouldSendFG;
+        //Plugin.cfg.SpoutSendOP = PluginConfig.Instance.ShouldSendOptimised;
         Plugin.cfg.BlankSpoutSenders = PluginConfig.Instance.BlankSpoutOnRenderDispose;
 
         Plugin.cfg.FarClip = PluginConfig.Instance.CameraFarClip;

@@ -23,9 +23,9 @@ public class BepOatPlugin : BaseUnityPlugin
     internal static ConfigEntry<bool> configReadClipFromShm;
     internal static ConfigEntry<bool> configVerticalClipPlane;
 
-    internal static ConfigEntry<bool> configSpoutSendBG;
-    internal static ConfigEntry<bool> configSpoutSendFG;
-    internal static ConfigEntry<bool> configSpoutSendOP;
+    //internal static ConfigEntry<bool> configSpoutSendBG;
+    //internal static ConfigEntry<bool> configSpoutSendFG;
+    //internal static ConfigEntry<bool> configSpoutSendOP;
     internal static ConfigEntry<bool> configBlankSpoutSenders;
 
     internal static ConfigEntry<float> configFarClip;
@@ -54,9 +54,9 @@ public class BepOatPlugin : BaseUnityPlugin
         configReadResFromShm = Config.Bind("OAT_MMF_Data","ReadWindowResolution", false);
         configReadClipFromShm = Config.Bind("OAT_MMF_Data","ReadClipPlaneLocation", false);
 
-        configSpoutSendBG = Config.Bind("RenderPasses","SendBackground",true);
-        configSpoutSendFG = Config.Bind("RenderPasses","SendForeground",true);
-        configSpoutSendOP = Config.Bind("RenderPasses","SendOptimised",false);
+        //configSpoutSendBG = Config.Bind("RenderPasses","SendBackground",true);
+        //configSpoutSendFG = Config.Bind("RenderPasses","SendForeground",true);
+        //configSpoutSendOP = Config.Bind("RenderPasses","SendOptimised",false);
         configBlankSpoutSenders = Config.Bind("RenderPasses","BlankSendersOnRenderDispose",true);
 
         configFarClip = Config.Bind("ClipPlanes", "CameraFarClip", 1000f);
@@ -104,9 +104,9 @@ public class BepOatPlugin : BaseUnityPlugin
         cfg.ReadResFromShm = configReadResFromShm.Value;
         cfg.ReadClipFromShm = configReadClipFromShm.Value;
 
-        cfg.SpoutSendBG = configSpoutSendBG.Value;
-        cfg.SpoutSendFG = configSpoutSendFG.Value;
-        cfg.SpoutSendOP = configSpoutSendOP.Value;
+        //cfg.SpoutSendBG = configSpoutSendBG.Value;
+        //cfg.SpoutSendFG = configSpoutSendFG.Value;
+        //cfg.SpoutSendOP = configSpoutSendOP.Value;
         cfg.BlankSpoutSenders = configBlankSpoutSenders.Value;
 
         cfg.FarClip = configFarClip.Value;

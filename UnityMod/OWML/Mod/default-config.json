@@ -28,21 +28,6 @@
       "type": "toggle",
       "value": false
     },
-    "sendBG": {
-      "title": "Send Background",
-      "type": "toggle",
-      "value": true
-    },
-    "sendFG": {
-      "title": "Send Foreground",
-      "type": "toggle",
-      "value": true
-    },
-    "sendOP": {
-      "title": "Send Optimised",
-      "type": "toggle",
-      "value": false
-    },
     "blankSenders": {
       "title": "Blank Spout on Scene Change",
       "type": "toggle",

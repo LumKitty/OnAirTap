@@ -13,9 +13,9 @@ internal class Config
     internal bool ReadResFromShm;
     internal bool ReadClipFromShm;
     internal bool VerticalClipPlane;
-    internal bool SpoutSendBG;
-    internal bool SpoutSendFG;
-    internal bool SpoutSendOP;
+    //internal bool SpoutSendBG;
+    //internal bool SpoutSendFG;
+    //internal bool SpoutSendOP;
     internal bool BlankSpoutSenders;
     internal float FarClip;
     internal ushort ProtoMinorVer;

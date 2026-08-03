@@ -12,9 +12,9 @@ public class Mod : MelonMod
     MelonPreferences_Entry<bool> configRenderBG;
     MelonPreferences_Entry<bool> configRenderFG;
     MelonPreferences_Entry<bool> configRenderOP;
-    MelonPreferences_Entry<bool> configSendBG;
-    MelonPreferences_Entry<bool> configSendFG;
-    MelonPreferences_Entry<bool> configSendOP;
+    //MelonPreferences_Entry<bool> configSendBG;
+    //MelonPreferences_Entry<bool> configSendFG;
+    //MelonPreferences_Entry<bool> configSendOP;
     MelonPreferences_Entry<bool> configBlankSpout;
     MelonPreferences_Entry<string> configLMS;
     MelonPreferences_Entry<string> configLMS_F;
@@ -47,9 +47,9 @@ public class Mod : MelonMod
         configRenderBG = categoryPasses.CreateEntry<bool>("RenderBG", true);
         configRenderFG = categoryPasses.CreateEntry<bool>("RenderFG", true);
         configRenderOP = categoryPasses.CreateEntry<bool>("RenderOP", true);
-        configSendBG = categoryPasses.CreateEntry<bool>("SendBG", true);
-        configSendFG = categoryPasses.CreateEntry<bool>("SendFG", true);
-        configSendOP = categoryPasses.CreateEntry<bool>("SendOP", true);
+        //configSendBG = categoryPasses.CreateEntry<bool>("SendBG", true);
+        //configSendFG = categoryPasses.CreateEntry<bool>("SendFG", true);
+        //configSendOP = categoryPasses.CreateEntry<bool>("SendOP", true);
         configBlankSpout = categoryPasses.CreateEntry<bool>("BlankSendersOnDispose", true);
         configLMS = categoryPasses.CreateEntry<string>("LayerMask", "00000000000000000000000000000000");
         configLMS_F = categoryPasses.CreateEntry<string>("LayerMaskFG", "00000000000000000000000000000000");
@@ -112,9 +112,9 @@ public class Mod : MelonMod
         cfg.ReadResFromShm = configReadResFromShm.Value;
         cfg.ReadClipFromShm = configReadClipFromShm.Value;
 
-        cfg.SpoutSendBG = configSendBG.Value;
-        cfg.SpoutSendFG = configSendFG.Value;
-        cfg.SpoutSendOP = configSendOP.Value;
+        //cfg.SpoutSendBG = configSendBG.Value;
+        //cfg.SpoutSendFG = configSendFG.Value;
+        //cfg.SpoutSendOP = configSendOP.Value;
         cfg.BlankSpoutSenders = configBlankSpout.Value;
         cfg.FarClip = configFarClip.Value;
 

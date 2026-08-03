@@ -14,7 +14,7 @@ class RenderingPatches {
     [HarmonyPatch(typeof(LIV.SDK.Unity.SDKRender), "CreateBackgroundTexture")]
     [HarmonyPostfix]
     static void HookSpoutBG(ref LIV.SDK.Unity.SDKRender __instance, RenderTexture ____backgroundRenderTexture) {
-        if (Plugin.cfg.SpoutSendBG == false) {return;}
+        if (Plugin.cfg.RenderBG == false) {return;}
         Plugin.spoutBG.sourceTexture = ____backgroundRenderTexture;
         Plugin.spoutBG.captureMethod = CaptureMethod.Texture;
     }
@@ -22,7 +22,7 @@ class RenderingPatches {
     [HarmonyPatch(typeof(LIV.SDK.Unity.SDKRender), "CreateForegroundTexture")]
     [HarmonyPostfix]
     static void HookSpoutFG(ref LIV.SDK.Unity.SDKRender __instance, RenderTexture ____foregroundRenderTexture) {
-        if (Plugin.cfg.SpoutSendFG == false) {return;}
+        if (Plugin.cfg.RenderFG == false) {return;}
         Plugin.spoutFG.sourceTexture = ____foregroundRenderTexture;
         Plugin.spoutFG.captureMethod = CaptureMethod.Texture;
     }
@@ -30,7 +30,7 @@ class RenderingPatches {
     [HarmonyPatch(typeof(LIV.SDK.Unity.SDKRender), "CreateOptimizedTexture")]
     [HarmonyPostfix]
     static void HookSpoutOp(ref LIV.SDK.Unity.SDKRender __instance, RenderTexture ____optimizedRenderTexture) {
-        if (Plugin.cfg.SpoutSendOP == false) {return;}
+        if (Plugin.cfg.RenderOP == false) {return;}
         Plugin.spoutOptimised.sourceTexture = ____optimizedRenderTexture;
         Plugin.spoutOptimised.captureMethod = CaptureMethod.Texture;
     }

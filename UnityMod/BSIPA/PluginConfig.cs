@@ -27,11 +27,11 @@ public class PluginConfig
 
     public bool ShouldReadTrackerFromMMF { get; set; } = false;
 
-    public bool ShouldSendBG { get; set; } = true;
+    //public bool ShouldSendBG { get; set; } = true;
 
-    public bool ShouldSendFG { get; set; } = true;
+    //public bool ShouldSendFG { get; set; } = true;
 
-    public bool ShouldSendOptimised { get; set; } = true;
+    //public bool ShouldSendOptimised { get; set; } = true;
 
     public bool BlankSpoutOnRenderDispose { get; set; } = false;
 

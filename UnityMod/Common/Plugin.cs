@@ -104,9 +104,9 @@ public class Plugin
         BridgePatchMethods.Res = new SDKResolution{width=cfg.ResX, height=cfg.ResY};
 
         if (notInitial){
-            if (!cfg.SpoutSendBG){spoutBG.captureMethod = CaptureMethod.GameView;}
-            if (!cfg.SpoutSendFG){spoutFG.captureMethod = CaptureMethod.GameView;}
-            if (!cfg.SpoutSendOP){spoutOptimised.captureMethod = CaptureMethod.GameView;}
+            if (!cfg.RenderBG){spoutBG.captureMethod = CaptureMethod.GameView;}
+            if (!cfg.RenderFG){spoutFG.captureMethod = CaptureMethod.GameView;}
+            if (!cfg.RenderOP){spoutOptimised.captureMethod = CaptureMethod.GameView;}
         }
     }
 
