@@ -42,7 +42,7 @@ public class Plugin
         else {nyanShm = new WComms();}
 
         logger.Info("Opening Comms.");
-        nyanShm.Open("uk.lum.livnyan.cameradata", cfg.ProtoMinorVer);
+        nyanShm.Open(cfg.MemoryPath, cfg.ProtoMinorVer);
 
         ReloadConfig(false);
 

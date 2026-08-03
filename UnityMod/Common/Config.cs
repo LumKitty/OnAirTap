@@ -23,4 +23,5 @@ internal class Config
     internal int LayerMaskFG;
     internal int LayerMaskOP;
     internal int ClipBehaviour;
+    internal string MemoryPath="uk.lum.vrnyan.cameradata";
 }

@@ -29,4 +29,19 @@ internal static class ConfigValidation
         }
         return true;
     }
+
+    public static bool MemoryPath(string path)
+    {
+        if (path == null || path == ""){return false;}
+
+        // This is probably unnecesssary, but it's good to be safe.
+        // .NET documentation does not specify a length limit, and
+        // Linux manpages for shm_open say it's "up to NAME_MAX
+        // (i.e., 255) characters". I'm not sure where I got 32 from.
+        if (path.Length > (32-".v1.1".Length)){return false;}
+
+        if (path.Contains("/") || path.Contains("\\")){return false;}
+
+        return true;
+    }
 }
