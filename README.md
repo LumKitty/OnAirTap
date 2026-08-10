@@ -1,3 +1,34 @@
+### Experimental Fork - You are on your own!
+
+This is my experimental fork of [OnAirTap](https://github.com/milkydelta/OnAirTap). The difference is the ability to run a second "Optimised" layer with a different LayerMask setting.
+This is mainly useful for BeatSaber, you can set it up with these settings:
+```
+"ShouldRenderExtra": true,
+"LayerMaskString": "01111111111111101111101111111111",
+"LayerMaskFG": "00000000000000000000000000000000",
+"LayerMaskOP": "00000000000000000000000000000000",
+"LayerMaskEX": "00000010000000000000100000000000",
+```
+You'll get a fourth spout sender that is only foreground walls. You can then use this with an advanced mask filter in OBS to separate your model into two depending on whether it's occluded by a wall, and apply a distortion filter to the occluded parts
+
+1) Add a new spout2 receiver for "OnAirTap Extra", put it behind the background layer
+   * If necessary add a Render Delay filter that is the same as your other OnAirTap layers
+3) move your normal VNyan source behind the background layer
+4) Source clone VNyan as "VNyan - NoDistort", place this between your OnAirTap BG and FG layers
+   * Add an "Advanced Mask" filter
+   * Source: OnAirTap-EX
+   * Filter on: Alpha Channel
+   * Invert Mask: yes
+5) Source clone VNyan again as "VNyan - Distort", place this next to "VNyan - NoDistort"
+   * Add a "User-defined shader" filter, and apply a nice distortion shader (I use Chroma+UV-Distortion.shader)
+   * Add an "Advanced Mask" filter. Same as above but do not tick "Invert Mask"
+   * Add any other effects you may wish to apply
+  
+Your model should now distort when a Beat Saber wall passes in front.
+If this version breaks, do not pester MilkyDelta with bug reports!
+
+Original readme below:
+
 # OnAirTap
 An alternative to the LIV application for Unity games using the LIV Unity SDK.<br>
 Intended for use with the LIVnyan plugin for VNyan.
