@@ -13,21 +13,31 @@ You'll get a fourth spout sender that is only foreground walls. You can then use
 
 1) Add a new spout2 receiver for "OnAirTap Extra", put it behind the background layer
    * If necessary add a Render Delay filter that is the same as your other OnAirTap layers
-3) move your normal VNyan source behind the background layer
-4) Source clone VNyan as "VNyan - NoDistort", place this between your OnAirTap BG and FG layers
-   * Add an "Advanced Mask" filter
-   * Source: OnAirTap-EX
-   * Filter on: Alpha Channel
-   * Invert Mask: yes
-5) Source clone VNyan again as "VNyan - Distort", place this next to "VNyan - NoDistort"
-   * Add a "User-defined shader" filter, and apply a nice distortion shader (I use Chroma+UV-Distortion.shader)
-   * Add an "Advanced Mask" filter. Same as above but do not tick "Invert Mask"
-   * Add any other effects you may wish to apply
+2) Move the OnAirTap FG and OP layers behind your background layer (and double check they have Render Delay set)
+3) Move your normal VNyan source behind the background layer
+4) Source clone VNyan as "VNyan - NoDistort", place this behind your VNyan layer
+   * Add some nice shaders to show a distortion effect as this version is what will get shown when you're behind a wall.
+   * Personally I use [OBS ShaderFilter](https://github.com/exeldro/obs-shaderfilter)'s included Heat-Wave-Simple and Colour-Grade-Filter shaders
+5) Edit your "OnAirTap BG" source
+   * Remove or disable any existing filters except for Render Delay
+   * Add a "User Defined Shader" filter that uses MilkyDelta's [OAT-All3-BS-Distortion.shader](https://github.com/LumKitty/OnAirTap/releases/download/v1.1-lum1/OAT-All3-BS-Distortion.shader)
+   * Fill in all the details of your sources (see images below)
   
-Your model should now distort when a Beat Saber wall passes in front.
+Your model should now distort when a Beat Saber wall passes in front.  
 If this version breaks, do not pester MilkyDelta with bug reports!
 
-<img width="1261" height="1199" alt="image" src="https://github.com/user-attachments/assets/149b3033-569c-425e-8196-1e869d688902" />
+Your OBS sources should look something like this:  
+<img width="171" height="119" alt="image" src="https://github.com/user-attachments/assets/739f73c4-6bf7-426e-b726-d86a0a212439" />
+
+Shader settings:  
+
+VNyan - Distort  
+<img width="588" height="242" alt="image" src="https://github.com/user-attachments/assets/47adc349-7fdb-4fc2-a0a2-f07cf3789f9f" />
+<img width="625" height="308" alt="image" src="https://github.com/user-attachments/assets/107ef655-adb7-4bbe-939f-3bc19fcb761a" />
+
+OnAirTap-BG  
+<img width="612" height="427" alt="image" src="https://github.com/user-attachments/assets/5b9823b3-a8e2-49e8-859b-4312bc45c6bc" />
+
 
 Original readme below:
 
