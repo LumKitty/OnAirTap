@@ -22,9 +22,11 @@ You'll get a fourth spout sender that is only foreground walls. You can then use
    * Remove or disable any existing filters except for Render Delay
    * Add a "User Defined Shader" filter that uses MilkyDelta's [OAT-All3-BS-Distortion.shader](https://github.com/LumKitty/OnAirTap/releases/download/v1.1-lum1/OAT-All3-BS-Distortion.shader)
    * Fill in all the details of your sources (see images below)
-  
+    
 Your model should now distort when a Beat Saber wall passes in front.  
-If this version breaks, do not pester MilkyDelta with bug reports!
+If this version breaks, do not pester MilkyDelta with bug reports!  
+
+Linux warning: Apparently when feeding Pipewire captures into a shader input, apparently this [ignores any filters you have applied](https://github.com/exeldro/obs-shaderfilter/issues/105). If you are using Render Delay, you'll need to Source Clone the OnAirTap FG, OP and EX sources, then feed those into the All3 shader instead. Just put the source clones behind the background so they aren't seen!  
 
 Your OBS sources should look something like this:  
 <img width="171" height="119" alt="image" src="https://github.com/user-attachments/assets/739f73c4-6bf7-426e-b726-d86a0a212439" />
