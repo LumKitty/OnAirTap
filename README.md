@@ -27,6 +27,8 @@ You'll get a fourth spout sender that is only foreground walls. You can then use
 Your model should now distort when a Beat Saber wall passes in front.
 If this version breaks, do not pester MilkyDelta with bug reports!
 
+<img width="1261" height="1199" alt="image" src="https://github.com/user-attachments/assets/149b3033-569c-425e-8196-1e869d688902" />
+
 Original readme below:
 
 # OnAirTap
