@@ -29,21 +29,18 @@ class RenderingPatches {
         Plugin.spoutFG.captureMethod = CaptureMethod.Texture;
     }
 
+    // Add an additional render during the Optimised stage, that uses the EX layer mask
     [HarmonyPatch(typeof(LIV.SDK.Unity.SDKRender), "InvokePreRenderBackground")]
     [HarmonyPostfix]
     static void BodgeSpoutEX(ref LIV.SDK.Unity.SDKRender __instance) {
-        if (currentPass >= RenPass.OP) { 
-            //__instance.SendTextureToBridge(__instance._foregroundRenderTexture, __instance.TEXTURE_ID.FOREGROUND_COLOR_BUFFER_ID);
+        if (currentPass >= RenPass.OP && Plugin.cfg.RenderEX == true) { 
             __instance.cameraInstance.Render();
-            //___fields.InvokePostRenderForeground();
             SDKUtils.SetCamera(__instance.cameraInstance, __instance.cameraInstance.transform, __instance.inputFrame, __instance.localToWorldMatrix, Plugin.cfg.LayerMaskEX);
             __instance.cameraInstance.targetTexture = ExtraRenderTexture;
-            if (__instance.liv.onPreRenderForeground != null) {
-                __instance.liv.onPreRenderForeground(__instance);
-            }
         }
     }
 
+    // Add creation of the additional texture for the EX render
     [HarmonyPatch(typeof(LIV.SDK.Unity.SDKRender), "CreateOptimizedTexture")]
     [HarmonyPostfix]
     static void HookSpoutOp(ref LIV.SDK.Unity.SDKRender __instance, RenderTexture ____optimizedRenderTexture, SDKResolution ____resolution) {
