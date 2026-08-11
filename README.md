@@ -30,7 +30,7 @@ For Beat Saber 1.44.1 use `"LayerMaskEX": "00000000000000100000100000000000",` i
     
 Your model should now distort when a Beat Saber wall passes in front.  
 
-Linux warning: Apparently when feeding Pipewire captures into a shader input, apparently this [ignores any filters you have applied](https://github.com/exeldro/obs-shaderfilter/issues/105). If you are using Render Delay, you'll need to Source Clone the OnAirTap FG, OP and EX sources, then feed those into the All3 shader instead. Just put the source clones behind the background so they aren't seen!  
+Linux warning: When feeding Pipewire captures into a shader input, apparently they [ignore any filters you have applied](https://github.com/exeldro/obs-shaderfilter/issues/105). If you are using Render Delay, you'll need to Source Clone the OnAirTap FG, OP and EX sources, then feed those into the All3 shader instead. Just put the source clones behind the background so they aren't seen!  
 
 Your OBS sources should look something like this:  
 <img width="171" height="119" alt="image" src="https://github.com/user-attachments/assets/739f73c4-6bf7-426e-b726-d86a0a212439" />
