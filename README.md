@@ -16,6 +16,8 @@ You'll get a fourth spout sender that is only foreground walls. You can then use
 
 For Beat Saber 1.44.1 use `"LayerMaskEX": "00000000000000100000100000000000",` instead
 
+These instructions accume you're starting from a working OnAirTap setup. If not follow the instuctions for setting up [OnAirTap - All3 - Shader](https://github.com/milkydelta/OnAirTap/wiki/Compositing#all-three-1) compositing in OBS, and get that working before continuing
+
 1) Add a new spout2 receiver for "OnAirTap Extra", put it behind the background layer
    * If necessary add a Render Delay filter that is the same as your other OnAirTap layers
 2) Move the OnAirTap FG and OP layers behind your background layer (and double check they have Render Delay set)
