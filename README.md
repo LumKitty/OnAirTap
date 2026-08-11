@@ -1,4 +1,7 @@
-### Experimental Fork - You are on your own!
+### OnAirTap Personal Fork - for translucent walls w/ distortion in BeatSaber
+Do not bug MilkyDelta with any issues in this fork!
+
+<img src="https://github.com/LumKitty/VRnyan/blob/master/VRnyan-demo.gif?raw=true">
 
 This is my experimental fork of [OnAirTap](https://github.com/milkydelta/OnAirTap). The difference is the ability to run a second "Optimised" layer with a different LayerMask setting.
 This is mainly useful for BeatSaber, you can set it up with these settings:
@@ -7,9 +10,11 @@ This is mainly useful for BeatSaber, you can set it up with these settings:
 "LayerMaskString": "01111111111111101111101111111111",
 "LayerMaskFG": "00000000000000000000000000000000",
 "LayerMaskOP": "00000000000000000000000000000000",
-"LayerMaskEX": "00000010000000000000100000000000",
+"LayerMaskEX": "00000010000000000000100000000000",   
 ```
 You'll get a fourth spout sender that is only foreground walls. You can then use this with an advanced mask filter in OBS to separate your model into two depending on whether it's occluded by a wall, and apply a distortion filter to the occluded parts
+
+For Beat Saber 1.44.1 use `"LayerMaskEX": "00000000000000100000100000000000",` instead
 
 1) Add a new spout2 receiver for "OnAirTap Extra", put it behind the background layer
    * If necessary add a Render Delay filter that is the same as your other OnAirTap layers
@@ -24,7 +29,6 @@ You'll get a fourth spout sender that is only foreground walls. You can then use
    * Fill in all the details of your sources (see images below)
     
 Your model should now distort when a Beat Saber wall passes in front.  
-If this version breaks, do not pester MilkyDelta with bug reports!  
 
 Linux warning: Apparently when feeding Pipewire captures into a shader input, apparently this [ignores any filters you have applied](https://github.com/exeldro/obs-shaderfilter/issues/105). If you are using Render Delay, you'll need to Source Clone the OnAirTap FG, OP and EX sources, then feed those into the All3 shader instead. Just put the source clones behind the background so they aren't seen!  
 
